@@ -3,9 +3,26 @@ $desktop-width: 1600px;
 $laptop-width: 1200px;
 $mobile-width: 840px;
 $phone-width: 730px;
-$small-phone-width: 450px;
-$small-font: 14px;
-$medium-font: 18px;
-$semi-big-font: 32px;
-$big-font: 36px;
-$xlarge-font: 40px;
+
+$primary-green: #40C353;
+$primary-black: #333333;
+$primary-white: #FFFFFF;
+$primary-orange: #C14E04;
+$hover-orange: #E77B35;
+$hover-white: #EFEEEE;
+
+
+.hide-on-phone {
+  
+  @media (max-width: $phone-width) {
+		display: none;
+	}
+}
+
+.show-on-phone {
+  display: none;
+  
+  @media (max-width: $phone-width) {
+		display: block;
+	}
+}

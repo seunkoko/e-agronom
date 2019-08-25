@@ -1,0 +1,51 @@
+@import "../../stylesheets/variables";
+
+#main-view {
+  width: inherit;
+  margin-left: 20%;
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-column-gap: 2%;
+  grid-row-gap: 3%;
+  padding: 30px 20px;
+
+  @media (max-width: $laptop-width) {
+    margin-left: 25%;
+  }
+
+  @media (max-width: $mobile-width) {
+    margin-left: 32%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: $phone-width) {
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cat-display {
+  height: 450px;
+  cursor: pointer;
+
+  @media (max-width: $mobile-width) {
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: $phone-width) {
+    height: 250px;
+  }
+}
+
+.image-display {
+  width: 90%;
+  border-radius: 8%;
+  padding: 3%;
+  height: 100%;
+
+  &:hover {
+    border: 1.5px dotted $primary-orange;
+  }
+}
