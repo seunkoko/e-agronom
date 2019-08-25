@@ -52,9 +52,9 @@ export const getCategoryImagesPending = () => (
  * @param {function} dispatch - dispatch method
  * @returns {function} - disapatch method depending on axios response
  */
-export const getCategoryImages = (limit=10, category_id=1) => (dispatch) => {
+export const getCategoryImages = (limit=10, categoryId=1, page=1) => (dispatch) => {
   dispatch(getCategoryImagesPending());
-  return axios.get(`https://api.thecatapi.com/v1/images/search?limit=${limit}&category_ids=${category_id}`)
+  return axios.get(`https://api.thecatapi.com/v1/images/search?limit=${limit}&category_ids=${categoryId}&page=${page}`)
     .then(response => dispatch(getCategoryImagesSuccess(response.data)))
     .catch(error => dispatch(getCategoryImagesFailure(error)));
 };
