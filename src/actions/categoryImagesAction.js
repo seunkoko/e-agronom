@@ -1,7 +1,6 @@
 import {
   GET_CATEGORY_IMAGES_SUCCESS,
   GET_CATEGORY_IMAGES_FAILURE,
-  GET_CATEGORY_IMAGES_PENDING,
 } from './types';
 
 import axios from 'axios';
@@ -34,17 +33,6 @@ export const getCategoryImagesFailure = error => (
   }
 );
 
-/**
- * getCategoryImagesPending - Dispatch status for getCategoryImages action
- *
- * @returns {object} - an object containing the type and payload
- */
-export const getCategoryImagesPending = () => (
-  {
-    type: GET_CATEGORY_IMAGES_PENDING,
-    pending: true,
-  }
-);
 
 /**
  * getCategoryImages - Dispatch category images after successfully fetching them
@@ -53,8 +41,7 @@ export const getCategoryImagesPending = () => (
  * @returns {function} - disapatch method depending on axios response
  */
 export const getCategoryImages = (limit=10, categoryId=1, page=1) => (dispatch) => {
-  dispatch(getCategoryImagesPending());
-  return axios.get(`https://api.thecatapi.com/v1/images/search?limit=${limit}&category_ids=${categoryId}&page=${page}`)
+  return axios.get(`https://api.thecatapi.com/v1/images/search?order=${'DESC'}&limit=${limit}&category_ids=${categoryId}&page=${page}`)
     .then(response => dispatch(getCategoryImagesSuccess(response.data)))
     .catch(error => dispatch(getCategoryImagesFailure(error)));
 };

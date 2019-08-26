@@ -2,7 +2,6 @@
 import {
   GET_CATEGORIES_SUCCESS,
   GET_CATEGORIES_FAILURE,
-  GET_CATEGORIES_PENDING,
 } from './types';
 
 import axios from 'axios';
@@ -35,17 +34,6 @@ export const getCategoriesFailure = error => (
   }
 );
 
-/**
- * getCategoriesPending - Dispatch status for getCategories action
- *
- * @returns {object} - an object containing the type and payload
- */
-export const getCategoriesPending = () => (
-  {
-    type: GET_CATEGORIES_PENDING,
-    pending: true,
-  }
-);
 
 /**
  * getCategories - Dispatch categories after successfully fetching them
@@ -54,7 +42,6 @@ export const getCategoriesPending = () => (
  * @returns {function} - disapatch method depending on axios response
  */
 export const getCategories = () => (dispatch) => {
-  dispatch(getCategoriesPending());
   return axios.get("https://api.thecatapi.com/v1/categories")
     .then(response => dispatch(getCategoriesSuccess(response.data)))
     .catch(error => dispatch(getCategoriesFailure(error)));

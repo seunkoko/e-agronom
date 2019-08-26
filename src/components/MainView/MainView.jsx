@@ -11,7 +11,9 @@ import './MainView.scss';
  */
 const MainView = ({
   pending,
-  categoryImages
+  categoryImages,
+  handleLoadMore,
+  loadMorePending,
 }) => (
   <div id="main-view">
     {
@@ -19,9 +21,9 @@ const MainView = ({
     }
 
     {
-      !pending && categoryImages && categoryImages.map(categoryImage => {
+      !pending && categoryImages && categoryImages.map((categoryImage, index) => {
         const data = <div
-          key={categoryImage.id}
+          key={index}
           className="cat-display"
         >
           <img
@@ -37,6 +39,26 @@ const MainView = ({
     {
       !pending && categoryImages && categoryImages.length <= 0 && (
         <div>Sorry!!! No cats found</div>
+      )
+    }
+
+    {
+      !pending && categoryImages && categoryImages.length > 0 && (
+        <div>
+          <button
+            type="button"
+            className="load-more-btn"
+            onClick={handleLoadMore}
+          >
+            {
+              !loadMorePending && <p>Load more Images...</p>
+            }
+
+            {
+              loadMorePending && <div className="loader loader-pending"></div>
+            }
+          </button>
+        </div>
       )
     }
   </div>

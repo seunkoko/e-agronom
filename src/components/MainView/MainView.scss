@@ -1,5 +1,6 @@
 @import "../../stylesheets/variables";
 
+
 #main-view {
   width: inherit;
   margin-left: 20%;
@@ -7,7 +8,9 @@
   grid-template-columns: 49% 49%;
   grid-column-gap: 2%;
   grid-row-gap: 3%;
+  height: 100vh;
   padding: 30px 20px;
+  overflow-y: scroll;
 
   @media (max-width: $laptop-width) {
     margin-left: 25%;
@@ -43,7 +46,8 @@
   width: 90%;
   border-radius: 8%;
   padding: 3%;
-  height: 100%;
+  height: inherit;
+  object-fit: cover;
 
   &:hover {
     border: 1.5px dotted $primary-orange;
@@ -80,4 +84,30 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.load-more-btn {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  margin: 40px 0;
+  background-image: linear-gradient(to bottom right, $hover-orange, $primary-orange);
+  border: none;
+  cursor: pointer;
+  color: $primary-white;
+
+  &:hover {
+    border: 1px $hover-orange solid;
+    background-image: linear-gradient(to bottom right, $hover-white, $primary-white);
+    color: $primary-black;
+  }
+}
+
+.loader-pending {
+  width: 10px;
+  height: 10px;
+  border: 5px solid $hover-white;
+  border-top: 5px solid #B4B4B4;
+  top: 30%;
+  left: 45%;
 }

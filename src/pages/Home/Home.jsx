@@ -24,41 +24,11 @@ import './Home.scss';
 class Home extends Component {
   state = {
     categories: [],
-    categoryImages: this.props.categoryImagesData,
+    categoryImages: [],
     currentCategoryId: null,
-  }
-
-  /**
-   * React component life cycle hook
-   *
-   * @memberof Home
-   * @param {object} props - Props
-   * @param {object} state - State
-   * @return {void} - no return
-   */
-  static getDerivedStateFromProps = (nextProps, prevState) => {
-    const { match: { params } } = nextProps;
-    const { currentCategoryId, categoryImages } = prevState;
-
-    if (nextProps.categoryImagesData !== categoryImages) {
-      return {
-        categoryImages: nextProps.categoryImagesData
-      }
-    }
-
-    
-    if (params.category_id && params.category_id !== currentCategoryId) {
-      const { getCategoryImages } = nextProps;
-
-      // get category images
-      getCategoryImages(10, params.category_id, 1)
-
-      return {
-        currentCategoryId: params.category_id,
-      };
-    }
-
-    return null;
+    currentPage: 1,
+    pending: false,
+    loadMorePending: false
   }
 
   /**
@@ -70,9 +40,10 @@ class Home extends Component {
   componentDidMount() {
     const {
       getCategories,
-      getCategoryImages,
       match: { params },
     } = this.props;
+
+    this.setState({ pending: true })
 
     // get default categories
     getCategories()
@@ -86,22 +57,45 @@ class Home extends Component {
         if (categoriesData.data.length > 0) {
           this.setState({
             categories: categoriesData,
-            currentCategoryId: categoryId
+            currentCategoryId: categoryId,
+            pending: false
           });
   
           // get default category images
-          getCategoryImages(10, categoryId, 1)
-          .then(() => {
-            const {
-              categoryImagesData
-            } = this.props;
-    
-            this.setState({
-              categoryImages: categoryImagesData
-            });
-          });
+          this.handleGetCategoryImages(categoryId, 1);
         }
       });
+  }
+
+  /**
+   * React component life cycle hook
+   *
+   * @memberof Home
+   * @return {JSX} - home page
+   */
+  componentDidUpdate(prevProps, prevState) {
+    const {
+      match: { params },
+      getCategoryImages,
+    } = this.props;
+
+    if (prevProps.match.params.category_id !== params.category_id) {
+      this.setState({ pending: true })
+
+      // get category images
+      getCategoryImages(10, params.category_id, 1)
+        .then(()=> {
+          const { categoryImagesData } = this.props;
+          
+          this.setState({
+            categoryImages: categoryImagesData,
+            currentCategoryId: params.category_id,
+            pending: false
+          });
+        })
+    }
+
+    return null;
   }
 
   /**
@@ -130,6 +124,61 @@ class Home extends Component {
   }
 
   /**
+   * handleLoadMore - Loads more images
+   *
+   * @memberof Home
+   */
+  handleLoadMore = () => {
+    const { getCategoryImages } = this.props;
+    const { currentCategoryId } = this.state;
+    let { currentPage, categoryImages } = this.state;
+
+    this.setState({ loadMorePending: true })
+
+    currentPage += 1;
+
+    // get category images
+    getCategoryImages(10, currentCategoryId, currentPage)
+    .then(() => {
+      const {
+        categoryImagesData
+      } = this.props;
+
+      categoryImages.data  = categoryImages.data.concat(categoryImagesData.data);
+
+      this.setState({
+        categoryImages,
+        currentPage,
+        loadMorePending: false
+      });
+    });
+  }
+
+  /**
+   * handleGetCategoryImages - Calls getCategoryImages action
+   *
+   * @memberof Home
+   */
+  handleGetCategoryImages(categoryId, page=1) {
+    const { getCategoryImages } = this.props;
+    
+    this.setState({ pending: true })
+
+    // get category images
+    getCategoryImages(10, categoryId, page)
+    .then(() => {
+      const {
+        categoryImagesData
+      } = this.props;
+
+      this.setState({
+        categoryImages: categoryImagesData,
+        pending: false
+      });
+    });
+  }
+
+  /**
    * Renders Home component
    * @param {object} props - component props
    * @returns {JSX} JSX
@@ -138,6 +187,8 @@ class Home extends Component {
     const {
       categories,
       categoryImages,
+      pending,
+      loadMorePending
     } = this.state;
 
     return (
@@ -150,8 +201,10 @@ class Home extends Component {
 
         {/* mainview */}
         <MainView
-          pending={categoryImages.pending}
+          pending={pending}
+          loadMorePending={loadMorePending}
           categoryImages={categoryImages.data}
+          handleLoadMore={this.handleLoadMore}
         />
       </div>
     );
