@@ -21,14 +21,12 @@ export const categoryImages = (state = initialState.categoryImages, action) => {
       return {
         ...state,
         data: action.data,
-        pending: action.pending,
       };
 
     case GET_CATEGORY_IMAGES_FAILURE:
       return {
         ...state,
         error: action.error,
-        pending: action.pending,
       };
 
     default:
