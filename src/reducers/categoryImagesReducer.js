@@ -1,7 +1,6 @@
 // actions
 import {
   GET_CATEGORY_IMAGES_FAILURE,
-  GET_CATEGORY_IMAGES_PENDING,
   GET_CATEGORY_IMAGES_SUCCESS,
 } from '../actions/types';
 
@@ -29,12 +28,6 @@ export const categoryImages = (state = initialState.categoryImages, action) => {
       return {
         ...state,
         error: action.error,
-        pending: action.pending,
-      };
-
-    case GET_CATEGORY_IMAGES_PENDING:
-      return {
-        ...state,
         pending: action.pending,
       };
 

@@ -1,7 +1,6 @@
 // actions
 import {
   GET_CATEGORIES_FAILURE,
-  GET_CATEGORIES_PENDING,
   GET_CATEGORIES_SUCCESS,
 } from '../actions/types';
 
@@ -29,12 +28,6 @@ export const categories = (state = initialState.categories, action) => {
       return {
         ...state,
         error: action.error,
-        pending: action.pending,
-      };
-
-    case GET_CATEGORIES_PENDING:
-      return {
-        ...state,
         pending: action.pending,
       };
 
