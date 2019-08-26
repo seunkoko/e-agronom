@@ -11,6 +11,7 @@ const AppContainer = (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<Switch>
+				<Route path="/:category_id" component={Home} />
 				<Route component={Home} />
 			</Switch>
 		</ConnectedRouter>

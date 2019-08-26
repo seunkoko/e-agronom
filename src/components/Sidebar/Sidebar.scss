@@ -7,6 +7,7 @@
   color: $primary-white;
   font-weight: bold;
   width: 20%;
+  z-index: 10000;
 
   @media (max-width: $laptop-width) {
     width: 25%;
@@ -23,11 +24,7 @@
 
 .sidebar-title {
   margin: 30px 20px;
-
-  &:hover {
-    cursor: pointer;
-    color: $primary-orange;
-  }
+  color: $hover-orange;
 }
 
 .menu-items{
