@@ -1,5 +1,6 @@
 // react library
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import './Sidebar.scss';
@@ -10,12 +11,18 @@ import './Sidebar.scss';
  * @returns {JSX} JSX
  */
 const MenuItems = ({
+  id,
   name
 }) => (
-  <div className="menu-items">
-    <i className="fas fa-cat menu-cat-icon"></i>
-    <p className="menu-item-name">{name}</p>
-  </div>
+  <Link
+    to={`/${id}`}
+    className="links"
+  >
+    <div className="menu-items">
+      <i className="fas fa-cat menu-cat-icon"></i>
+      <p className="menu-item-name">{name}</p>
+    </div>
+  </Link>
 );
 
 export default MenuItems;

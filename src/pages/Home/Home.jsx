@@ -24,9 +24,41 @@ import './Home.scss';
 class Home extends Component {
   state = {
     categories: [],
-    categoryImages: [],
+    categoryImages: this.props.categoryImagesData,
     currentCategoryId: null,
-    currentPage: 1,
+  }
+
+  /**
+   * React component life cycle hook
+   *
+   * @memberof Home
+   * @param {object} props - Props
+   * @param {object} state - State
+   * @return {void} - no return
+   */
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    const { match: { params } } = nextProps;
+    const { currentCategoryId, categoryImages } = prevState;
+
+    if (nextProps.categoryImagesData !== categoryImages) {
+      return {
+        categoryImages: nextProps.categoryImagesData
+      }
+    }
+
+    
+    if (params.category_id && params.category_id !== currentCategoryId) {
+      const { getCategoryImages } = nextProps;
+
+      // get category images
+      getCategoryImages(10, params.category_id, 1)
+
+      return {
+        currentCategoryId: params.category_id,
+      };
+    }
+
+    return null;
   }
 
   /**
@@ -39,6 +71,7 @@ class Home extends Component {
     const {
       getCategories,
       getCategoryImages,
+      match: { params },
     } = this.props;
 
     // get default categories
@@ -47,15 +80,17 @@ class Home extends Component {
         const {
           categoriesData
         } = this.props;
-    
+
+        const categoryId = "category_id" in params ? params.category_id : categoriesData.data[0].id;
+
         if (categoriesData.data.length > 0) {
           this.setState({
             categories: categoriesData,
-            currentCategoryId: categoriesData.data[0].id
+            currentCategoryId: categoryId
           });
   
           // get default category images
-          getCategoryImages(10, categoriesData.data[0].id, 1)
+          getCategoryImages(10, categoryId, 1)
           .then(() => {
             const {
               categoryImagesData
@@ -115,6 +150,7 @@ class Home extends Component {
 
         {/* mainview */}
         <MainView
+          pending={categoryImages.pending}
           categoryImages={categoryImages.data}
         />
       </div>

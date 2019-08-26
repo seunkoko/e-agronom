@@ -10,11 +10,16 @@ import './MainView.scss';
  * @returns {JSX} JSX
  */
 const MainView = ({
+  pending,
   categoryImages
 }) => (
   <div id="main-view">
     {
-      categoryImages && categoryImages.map(categoryImage => {
+      pending && <div className="loader"></div>
+    }
+
+    {
+      !pending && categoryImages && categoryImages.map(categoryImage => {
         const data = <div
           key={categoryImage.id}
           className="cat-display"
@@ -27,6 +32,12 @@ const MainView = ({
         </div>
         return data;
       })
+    }
+
+    {
+      !pending && categoryImages && categoryImages.length <= 0 && (
+        <div>Sorry!!! No cats found</div>
+      )
     }
   </div>
 );

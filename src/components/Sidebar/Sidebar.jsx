@@ -35,6 +35,7 @@ const Sidebar = ({
         categories && categories.map(category => {
           const item = <MenuItems
             key={category.id}
+            id={category.id}
             name={category.name}
           />
           return item;
