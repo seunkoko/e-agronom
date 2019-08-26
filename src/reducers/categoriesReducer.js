@@ -20,15 +20,13 @@ export const categories = (state = initialState.categories, action) => {
     case GET_CATEGORIES_SUCCESS:
       return {
         ...state,
-        data: action.data,
-        pending: action.pending,
+        data: action.data
       };
 
     case GET_CATEGORIES_FAILURE:
       return {
         ...state,
-        error: action.error,
-        pending: action.pending,
+        error: action.error
       };
 
     default:

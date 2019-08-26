@@ -14,7 +14,6 @@ import axios from 'axios';
 export const getCategoryImagesSuccess = data => (
   {
     type: GET_CATEGORY_IMAGES_SUCCESS,
-    pending: false,
     data,
   }
 );
@@ -28,7 +27,6 @@ export const getCategoryImagesSuccess = data => (
 export const getCategoryImagesFailure = error => (
   {
     type: GET_CATEGORY_IMAGES_FAILURE,
-    pending: false,
     error,
   }
 );

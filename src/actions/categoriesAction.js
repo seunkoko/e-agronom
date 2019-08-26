@@ -15,7 +15,6 @@ import axios from 'axios';
 export const getCategoriesSuccess = data => (
   {
     type: GET_CATEGORIES_SUCCESS,
-    pending: false,
     data,
   }
 );
@@ -29,7 +28,6 @@ export const getCategoriesSuccess = data => (
 export const getCategoriesFailure = error => (
   {
     type: GET_CATEGORIES_FAILURE,
-    pending: false,
     error,
   }
 );
