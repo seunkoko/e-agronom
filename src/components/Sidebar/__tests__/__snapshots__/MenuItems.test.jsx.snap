@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainView component renders correctly 1`] = `
+<Link
+  className="links"
+  to="/1"
+>
+  <div
+    className="menu-items"
+  >
+    <i
+      className="fas fa-cat menu-cat-icon"
+    />
+    <p
+      className="menu-item-name"
+    >
+      cat
+    </p>
+  </div>
+</Link>
+`;
