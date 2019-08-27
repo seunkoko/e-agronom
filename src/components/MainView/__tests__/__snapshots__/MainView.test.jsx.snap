@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainView component renders correctly 1`] = `
+<div
+  id="main-view"
+>
+  <div>
+    Sorry!!! No cats found
+  </div>
+</div>
+`;

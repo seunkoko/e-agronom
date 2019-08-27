@@ -21,10 +21,10 @@ import './Home.scss';
  * @class Home
  * @extends {React.Component}
  */
-class Home extends Component {
+export class Home extends Component {
   state = {
     categories: [],
-    categoryImages: [],
+    categoryImages: {},
     currentCategoryId: null,
     currentPage: 1,
     pending: false,
@@ -103,7 +103,7 @@ class Home extends Component {
    *
    * @memberof Home
    */
-  openMobileMenu() {
+  openMobileMenu = () => {
     const sidebar = document.getElementById("sidebar-id");
     const sidebarIcon = document.getElementById("open-sidebar-icon");
     const sidebarContent = document.getElementById("sidebar-content");
@@ -116,7 +116,7 @@ class Home extends Component {
       sidebarContent.classList.add("hide-on-phone");
     } else {
       sidebar.classList.add("mobile-style");
-
+      
       sidebarIcon.classList.remove("fa-arrow-right");
       sidebarIcon.classList.add("fa-times-circle");
       sidebarContent.classList.remove("hide-on-phone");
@@ -159,7 +159,7 @@ class Home extends Component {
    *
    * @memberof Home
    */
-  handleGetCategoryImages(categoryId, page=1) {
+  handleGetCategoryImages = (categoryId, page=1) => {
     const { getCategoryImages } = this.props;
     
     this.setState({ pending: true })

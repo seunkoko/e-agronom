@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainView component renders correctly 1`] = `
+<div
+  className="sidebar"
+  id="sidebar-id"
+>
+  <div
+    className="show-on-phone"
+  >
+    <i
+      className="fas fa-arrow-right open-sidebar"
+      id="open-sidebar-icon"
+      onClick={[MockFunction]}
+    />
+  </div>
+  <div
+    className="hide-on-phone"
+    id="sidebar-content"
+  >
+    <h2
+      className="sidebar-title"
+    >
+      CATEGORIES
+    </h2>
+  </div>
+</div>
+`;

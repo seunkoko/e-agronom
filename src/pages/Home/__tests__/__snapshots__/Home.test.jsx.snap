@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Component renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(Home)
+    getCategories={[Function]}
+    getCategoryImages={[Function]}
+    match={
+      Object {
+        "params": 1,
+      }
+    }
+  >
+    <Home
+      getCategories={[Function]}
+      getCategoryImages={[Function]}
+      match={
+        Object {
+          "params": 1,
+        }
+      }
+    >
+      <div
+        id="main-body"
+      >
+        <Sidebar
+          openMobileMenu={[Function]}
+        >
+          <div
+            className="sidebar"
+            id="sidebar-id"
+          >
+            <div
+              className="show-on-phone"
+            >
+              <i
+                className="fas fa-arrow-right open-sidebar"
+                id="open-sidebar-icon"
+                onClick={[Function]}
+              />
+            </div>
+            <div
+              className="hide-on-phone"
+              id="sidebar-content"
+            >
+              <h2
+                className="sidebar-title"
+              >
+                CATEGORIES
+              </h2>
+            </div>
+          </div>
+        </Sidebar>
+        <MainView
+          handleLoadMore={[Function]}
+          loadMorePending={false}
+          pending={true}
+        >
+          <div
+            id="main-view"
+          >
+            <div
+              className="loader"
+            />
+          </div>
+        </MainView>
+      </div>
+    </Home>
+  </Connect(Home)>
+</Provider>
+`;
