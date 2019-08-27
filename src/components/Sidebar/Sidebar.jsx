@@ -14,7 +14,8 @@ import './Sidebar.scss';
  */
 const Sidebar = ({
   openMobileMenu,
-  categories
+  categories,
+  currentCategoryId,
 }) => (
   <div id="sidebar-id" className="sidebar">
     <div className="show-on-phone">
@@ -37,6 +38,7 @@ const Sidebar = ({
             key={category.id}
             id={category.id}
             name={category.name}
+            currentCategoryId={currentCategoryId}
           />
           return item;
         })

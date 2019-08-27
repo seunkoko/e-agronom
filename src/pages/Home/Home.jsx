@@ -187,6 +187,7 @@ export class Home extends Component {
     const {
       categories,
       categoryImages,
+      currentCategoryId,
       pending,
       loadMorePending
     } = this.state;
@@ -196,6 +197,7 @@ export class Home extends Component {
         {/* sidebar */}
         <Sidebar
           categories={categories.data}
+          currentCategoryId={currentCategoryId}
           openMobileMenu={this.openMobileMenu}
         />
 
