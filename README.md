@@ -29,6 +29,13 @@ Hosted on Netlify [here](https://egronom-assessment.netlify.com)
 - To run tests with coverage, run `npm run test:coverage`
 
 
+### Areas To Improve
+---
+
+- Code reusablity: Make the code more DRY e.g. abstract the `getCategoryImages` function in the Home component
+- Test more extensively
+
+
 #### Contributing
 ---
 
