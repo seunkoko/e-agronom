@@ -4,7 +4,7 @@
 
 This application was bootstrapped using CRA (create-react-app).
 
-Hosted on Netlify [here](https://5d65380375c0ab017b680db8--egronom-assessment.netlify.com)
+Hosted on Netlify [here](https://egronom-assessment.netlify.com)
 
 
 ### Technologies Used
